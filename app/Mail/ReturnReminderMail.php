@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Mail;
+
+use App\Models\Loan;
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+
+class ReturnReminderMail extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    public function __construct(public Loan $loan) {}
+
+    public function build()
+    {
+        return $this->subject('Pengingat Pengembalian Buku — LibHub')
+            ->view('emails.return-reminder');
+    }
+}
